@@ -117,6 +117,10 @@ static void write_logfile(struct client *ptr, const _Bool forced)
 		fprintf(ptr->log_fp, "\n");
 		avail = 0;
 	}
+
+	/* Flush the log after everything was written */
+	fflush(ptr->log_fp);
+
 	/* Discard the written data. */
 	if (ptr->buffer != buffer)
 		memmove(ptr->buffer, buffer, avail);
